@@ -1,0 +1,21 @@
+*.idea*
+*.DS_Store*
+*postgres-data*
+
+# Ignore Python cache and environment
+__pycache__/
+*.pyc
+.env
+
+# Ignore IDE and OS files
+.idea/
+.DS_Store
+
+# Ignore Postgres data folder
+postgres-data/
+
+Exercises/**/downloads/
+Exercises/**/wet.paths.gz/
+Exercises/**/01001499999.csv/
+Exercises/**/output/
+
