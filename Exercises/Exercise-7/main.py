@@ -66,11 +66,13 @@ def main():
     ranked_df = add_storage_ranking(df)
     # ranked_df.show(10)
 
-    # Question 5
     def add_primary_key(df):
-        return df.withColumn("primary_key", F.hash(F.col("date"), F.col("serial_number")))
+        window_spec = Window.orderBy(F.monotonically_increasing_id())
+        df_with_id = df.withColumn("row_number", F.row_number().over(window_spec))
+        df_with_hash = df_with_id.withColumn("primary_key", F.hash(F.col("row_number")))
+        return df_with_hash
     df = add_primary_key(df)
-    # df.show(5)
+    
 
 
 
